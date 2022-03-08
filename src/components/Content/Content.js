@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  Typography,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+
+import ProduktList from "../ProduktList/ProduktList";
+import Warenkorb from "../Warenkorb/Warenkorb";
 
 export default function Content() {
-  const [expanded, setExpanded] = useState(false);
-  const [checked, setChecked] = useState(false);
   const [produktList, setProduktList] = useState([]);
+  const [warenkorb, setWarenkorb] = useState([]);
 
   useEffect(() => {
     const getOrder = async () => {
@@ -30,55 +23,45 @@ export default function Content() {
     getOrder();
   }, []);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  useEffect(() => {
+    console.log(warenkorb);
+  }, [warenkorb]);
 
-  const handleChangeCheck = () => {
-    return;
+  const handleOnClickWarenkorb = (produktID, belagListe, totalPreis) => {
+    const findProdukt = produktList.filter(
+      (produkt) => produkt._id === produktID
+    );
+    const artikel = {
+      produkt: findProdukt[0],
+      extras: belagListe,
+      total: totalPreis,
+    };
+    setWarenkorb([...warenkorb, artikel]);
   };
 
   return (
-    <div>
-      {produktList.map((produkt) => {
-        return (
-          <Accordion
-            expanded={expanded === produkt._id}
-            onChange={handleChange(produkt._id)}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+    <Grid container spacing={2}>
+      <Grid item xs={1}></Grid>
+      <Grid item xs={8}>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 30 }}
+              color="text.secondary"
+              gutterBottom
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Pizza {produkt.Name}
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                {produkt.Preis}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <FormGroup>
-                {produkt.Belag.map((belag) => {
-                  console.log(belag);
-                  return (
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={checked}
-                          onChange={handleChangeCheck}
-                        />
-                      }
-                      label={belag.Name +" (+"+ belag.Preis+")"}
-                    />
-                  );
-                })}
-              </FormGroup>
-            </AccordionDetails>
-          </Accordion>
-        );
-      })}
-    </div>
+              Speisekarte
+            </Typography>
+            <ProduktList
+              produktList={produktList}
+              handleOnClickWarenkorb={handleOnClickWarenkorb}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={3}>
+        <Warenkorb warenkorb={warenkorb} />
+      </Grid>
+    </Grid>
   );
 }
