@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Button, Card, CardContent } from "@mui/material";
 
-export default function Warenkorb({ warenkorb }) {
+export default function Warenkorb({ warenkorb, total, updateTotalPreis }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const calculated = calculatePreis();
+    updateTotalPreis(calculated);
+  }, [warenkorb]);
+
   const calculatePreis = () => {
     let calculated = 0;
     const arr = warenkorb.map((artikel) => {
@@ -20,19 +28,21 @@ export default function Warenkorb({ warenkorb }) {
         {warenkorb.map((artikel) => {
           return (
             <div key={uuid()}>
-              <li key={uuid()}>
+              <ul key={uuid()}>
                 <div>{artikel.produkt.Name}</div>
                 <ul key={uuid()}>
                   {artikel.extras.map((belag) => {
                     return <div>+ {belag}</div>;
                   })}
                 </ul>
-              </li>
+              </ul>
             </div>
           );
         })}
-        <div>Total Preis: {calculatePreis()}</div>
-        <div>Button</div>
+        <div>Total Preis: {total}</div>
+        <Button variant="contained" onClick={() => navigate("/kontakt")}>
+          Bestellen
+        </Button>
       </CardContent>
     </Card>
   );

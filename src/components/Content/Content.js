@@ -5,40 +5,13 @@ import { Card, CardContent, Grid, Typography } from "@mui/material";
 import ProduktList from "../ProduktList/ProduktList";
 import Warenkorb from "../Warenkorb/Warenkorb";
 
-export default function Content() {
-  const [produktList, setProduktList] = useState([]);
-  const [warenkorb, setWarenkorb] = useState([]);
-
-  useEffect(() => {
-    const getOrder = async () => {
-      await axios
-        .get(`http://localhost:5000/produkte`)
-        .then((res) => {
-          setProduktList(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getOrder();
-  }, []);
-
-  useEffect(() => {
-    console.log(warenkorb);
-  }, [warenkorb]);
-
-  const handleOnClickWarenkorb = (produktID, belagListe, totalPreis) => {
-    const findProdukt = produktList.filter(
-      (produkt) => produkt._id === produktID
-    );
-    const artikel = {
-      produkt: findProdukt[0],
-      extras: belagListe,
-      total: totalPreis,
-    };
-    setWarenkorb([...warenkorb, artikel]);
-  };
-
+export default function Content({
+  produktList,
+  warenkorb,
+  total,
+  handleOnClickWarenkorb,
+  updateTotalPreis,
+}) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={1}></Grid>
@@ -60,7 +33,11 @@ export default function Content() {
         </Card>
       </Grid>
       <Grid item xs={3}>
-        <Warenkorb warenkorb={warenkorb} />
+        <Warenkorb
+          warenkorb={warenkorb}
+          total={total}
+          updateTotalPreis={updateTotalPreis}
+        />
       </Grid>
     </Grid>
   );

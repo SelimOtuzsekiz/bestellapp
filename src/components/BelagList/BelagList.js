@@ -32,7 +32,18 @@ export default function BelagList({
     );
 
     setTotal(totalPrice + produktPreis);
-    setExtras([...extras, belag.Name]);
+    updateExtraList(belag.Name);
+  };
+
+  const updateExtraList = (belag) => {
+    const findBelag = extras.find((item) => item === belag);
+    console.log(findBelag);
+    if (findBelag) {
+      const newExtras = extras.filter((item) => item !== belag);
+      setExtras([newExtras]);
+    } else {
+      setExtras([...extras, belag]);
+    }
   };
 
   return (
