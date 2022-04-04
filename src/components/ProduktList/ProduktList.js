@@ -10,7 +10,11 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BelagList from "../BelagList/BelagList";
 
-export default function MenuList({ produktList, handleOnClickWarenkorb }) {
+export default function ProduktList({
+  produktList,
+  handleOnClickWarenkorb,
+  getPrice,
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -35,7 +39,7 @@ export default function MenuList({ produktList, handleOnClickWarenkorb }) {
                 Pizza {produkt.Name}
               </Typography>
               <Typography sx={{ color: "text.secondary" }}>
-                {produkt.Preis}
+                {produkt.Preis / 100}0€
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -45,6 +49,7 @@ export default function MenuList({ produktList, handleOnClickWarenkorb }) {
                   belagList={produkt.Belag}
                   produktPreis={produkt.Preis}
                   handleOnClickWarenkorb={handleOnClickWarenkorb}
+                  getPrice={getPrice}
                 />
               </FormGroup>
             </AccordionDetails>

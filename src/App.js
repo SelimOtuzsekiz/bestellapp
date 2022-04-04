@@ -50,8 +50,18 @@ function App() {
     setKontakt(kontaktDaten);
   };
 
+  const resetWarenkorb = () => {
+    setWarenkorb([]);
+  };
+
   const updateTotalPreis = (totalPreis) => {
     setTotal(totalPreis);
+  };
+
+  const getPrice = (price) => {
+    const newPrice =
+      price % 100 == 0 ? price / 100 + ".00€" : price / 100 + "0€";
+    return newPrice;
   };
 
   return (
@@ -68,6 +78,7 @@ function App() {
                 total={total}
                 handleOnClickWarenkorb={handleOnClickWarenkorb}
                 updateTotalPreis={updateTotalPreis}
+                getPrice={getPrice}
               />
             }
           />
@@ -82,6 +93,8 @@ function App() {
                 warenkorb={warenkorb}
                 kontakt={kontakt}
                 total={total}
+                getPrice={getPrice}
+                resetWarenkorb={resetWarenkorb}
               />
             }
           />

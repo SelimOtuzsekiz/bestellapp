@@ -51,12 +51,7 @@ export default function KontaktFormular({ handleAddKontakt }) {
               >
                 Kontakt:
               </Typography>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     <TextField
@@ -167,11 +162,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                   <Grid item xs={12}>
                     <Button
                       type="submit"
-                      fullWidth
                       variant="contained"
                       sx={{ mt: 3, mb: 2 }}
                     >
-                      Anmelden
+                      Weiter zur Bestellübersicht
                     </Button>
                   </Grid>
                 </Grid>

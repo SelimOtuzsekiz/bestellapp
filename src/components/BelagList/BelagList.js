@@ -7,6 +7,7 @@ export default function BelagList({
   belagList,
   produktPreis,
   handleOnClickWarenkorb,
+  getPrice,
 }) {
   const [extras, setExtras] = useState([]);
   const [total, setTotal] = useState(produktPreis);
@@ -37,7 +38,6 @@ export default function BelagList({
 
   const updateExtraList = (belag) => {
     const findBelag = extras.find((item) => item === belag);
-    console.log(findBelag);
     if (findBelag) {
       const newExtras = extras.filter((item) => item !== belag);
       setExtras([newExtras]);
@@ -60,13 +60,13 @@ export default function BelagList({
                     onChange={() => handleOnChange(index, belag)}
                   />
                 }
-                label={belag.Name + " (+" + belag.Preis + ")"}
+                label={belag.Name + " (+" + getPrice(belag.Preis) + ")"}
               />
             );
           })}
         </Grid>
         <Grid item xs={3}>
-          Total Preis: {total}
+          Total Preis: {getPrice(total)}
           <Button
             variant="contained"
             onClick={() => handleOnClickWarenkorb(produktID, extras, total)}

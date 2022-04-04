@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { Button, Card, CardContent } from "@mui/material";
 
-export default function Warenkorb({ warenkorb, total, updateTotalPreis }) {
+export default function Warenkorb({
+  warenkorb,
+  total,
+  updateTotalPreis,
+  getPrice,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,7 +44,7 @@ export default function Warenkorb({ warenkorb, total, updateTotalPreis }) {
             </div>
           );
         })}
-        <div>Total Preis: {total}</div>
+        <div>Total Preis: {getPrice(total)}</div>
         <Button variant="contained" onClick={() => navigate("/kontakt")}>
           Bestellen
         </Button>

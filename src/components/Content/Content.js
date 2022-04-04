@@ -11,6 +11,7 @@ export default function Content({
   total,
   handleOnClickWarenkorb,
   updateTotalPreis,
+  getPrice,
 }) {
   return (
     <Grid container spacing={2}>
@@ -28,6 +29,7 @@ export default function Content({
             <ProduktList
               produktList={produktList}
               handleOnClickWarenkorb={handleOnClickWarenkorb}
+              getPrice={getPrice}
             />
           </CardContent>
         </Card>
@@ -37,6 +39,7 @@ export default function Content({
           warenkorb={warenkorb}
           total={total}
           updateTotalPreis={updateTotalPreis}
+          getPrice={getPrice}
         />
       </Grid>
     </Grid>
