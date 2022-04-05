@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 //Components
@@ -34,6 +29,20 @@ function App() {
     getOrder();
   }, []);
 
+  useEffect(() => {
+    const calculatePreis = () => {
+      let calculated = 0;
+      const arr = warenkorb.map((artikel) => {
+        return artikel.total;
+      });
+      arr.forEach((element) => {
+        calculated += element;
+      });
+      setTotal(calculated);
+    };
+    calculatePreis();
+  }, [warenkorb]);
+
   const handleOnClickWarenkorb = (produktID, belagListe, totalPreis) => {
     const findProdukt = produktList.filter(
       (produkt) => produkt._id === produktID
@@ -54,13 +63,9 @@ function App() {
     setWarenkorb([]);
   };
 
-  const updateTotalPreis = (totalPreis) => {
-    setTotal(totalPreis);
-  };
-
   const getPrice = (price) => {
     const newPrice =
-      price % 100 == 0 ? price / 100 + ".00€" : price / 100 + "0€";
+      price % 100 === 0 ? price / 100 + ".00€" : price / 100 + "0€";
     return newPrice;
   };
 
@@ -77,7 +82,6 @@ function App() {
                 warenkorb={warenkorb}
                 total={total}
                 handleOnClickWarenkorb={handleOnClickWarenkorb}
-                updateTotalPreis={updateTotalPreis}
                 getPrice={getPrice}
               />
             }

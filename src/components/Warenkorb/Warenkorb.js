@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { Button, Card, CardContent } from "@mui/material";
 
-export default function Warenkorb({
-  warenkorb,
-  total,
-  updateTotalPreis,
-  getPrice,
-}) {
+export default function Warenkorb({ warenkorb, total, getPrice }) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const calculated = calculatePreis();
-    updateTotalPreis(calculated);
-  }, [warenkorb]);
-
-  const calculatePreis = () => {
-    let calculated = 0;
-    const arr = warenkorb.map((artikel) => {
-      return artikel.total;
-    });
-    arr.forEach((element) => {
-      calculated += element;
-    });
-    return calculated;
+  const handleRenderButton = () => {
+    const myButton =
+      total != 0 ? (
+        <Button variant="contained" onClick={() => navigate("/kontakt")}>
+          Bestellen
+        </Button>
+      ) : (
+        <Button
+          disabled
+          variant="contained"
+          onClick={() => navigate("/kontakt")}
+        >
+          Bestellen
+        </Button>
+      );
+    return myButton;
   };
-
   return (
     <Card variant="outlined">
       <CardContent>
@@ -37,7 +33,7 @@ export default function Warenkorb({
                 <div>{artikel.produkt.Name}</div>
                 <ul key={uuid()}>
                   {artikel.extras.map((belag) => {
-                    return <div>+ {belag}</div>;
+                    return <div key={uuid()}>+ {belag}</div>;
                   })}
                 </ul>
               </ul>
@@ -45,9 +41,7 @@ export default function Warenkorb({
           );
         })}
         <div>Total Preis: {getPrice(total)}</div>
-        <Button variant="contained" onClick={() => navigate("/kontakt")}>
-          Bestellen
-        </Button>
+        {handleRenderButton()}
       </CardContent>
     </Card>
   );

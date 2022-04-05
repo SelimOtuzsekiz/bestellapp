@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -17,15 +17,15 @@ export default function KontaktFormular({ handleAddKontakt }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     handleAddKontakt({
-      vorname: data.get("vorname"),
-      nachname: data.get("nachname"),
-      strasse: data.get("strasse"),
-      hausnummer: data.get("hausnummer"),
-      zusatz: data.get("zusatz"),
-      plz: data.get("plz"),
-      stadt: data.get("stadt"),
-      firma: data.get("firma"),
-      telefonnummer: data.get("telefonnummer"),
+      Vorname: data.get("Vorname"),
+      Nachname: data.get("Nachname"),
+      Strasse: data.get("Strasse"),
+      Hausnummer: data.get("Hausnummer"),
+      Zusatz: data.get("Zusatz"),
+      PLZ: data.get("PLZ"),
+      Stadt: data.get("Stadt"),
+      Firma: data.get("Firma"),
+      Telefonnummer: data.get("Telefonnummer"),
     });
     navigate("/uebersicht");
   };
@@ -58,10 +58,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="vorname"
+                      id="Vorname"
                       label="Vorname"
-                      name="vorname"
-                      autoComplete="vorname"
+                      name="Vorname"
+                      autoComplete="Vorname"
                       autoFocus
                     />
                   </Grid>
@@ -70,10 +70,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="nachname"
+                      id="Nachname"
                       label="Nachname"
-                      name="nachname"
-                      autoComplete="nachname"
+                      name="Nachname"
+                      autoComplete="Nachname"
                       autoFocus
                     />
                   </Grid>
@@ -82,10 +82,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="strasse"
+                      id="Strasse"
                       label="Strasse"
-                      name="strasse"
-                      autoComplete="strasse"
+                      name="Strasse"
+                      autoComplete="Strasse"
                       autoFocus
                     />
                   </Grid>
@@ -94,10 +94,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="hausnummer"
+                      id="Hausnummer"
                       label="Hausnummer"
-                      name="hausnummer"
-                      autoComplete="hausnummer"
+                      name="Hausnummer"
+                      autoComplete="Hausnummer"
                       autoFocus
                     />
                   </Grid>
@@ -105,10 +105,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                     <TextField
                       margin="normal"
                       fullWidth
-                      id="zusatz"
+                      id="Zusatz"
                       label="Zusatz"
-                      name="zusatz"
-                      autoComplete="zusatz"
+                      name="Zusatz"
+                      autoComplete="Zusatz"
                       autoFocus
                     />
                   </Grid>
@@ -117,10 +117,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="plz"
+                      id="PLZ"
                       label="PLZ"
-                      name="plz"
-                      autoComplete="plz"
+                      name="PLZ"
+                      autoComplete="PLZ"
                       autoFocus
                     />
                   </Grid>
@@ -129,10 +129,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="stadt"
+                      id="Stadt"
                       label="Stadt"
-                      name="stadt"
-                      autoComplete="stadt"
+                      name="Stadt"
+                      autoComplete="Stadt"
                       autoFocus
                     />
                   </Grid>
@@ -140,10 +140,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                     <TextField
                       margin="normal"
                       fullWidth
-                      id="firma"
+                      id="Firma"
                       label="Firma"
-                      name="firma"
-                      autoComplete="firma"
+                      name="Firma"
+                      autoComplete="Firma"
                       autoFocus
                     />
                   </Grid>
@@ -152,10 +152,10 @@ export default function KontaktFormular({ handleAddKontakt }) {
                       margin="normal"
                       required
                       fullWidth
-                      id="telefonnummer"
+                      id="Telefonnummer"
                       label="Telefonnummer"
-                      name="telefonnummer"
-                      autoComplete="telefonnummer"
+                      name="Telefonnummer"
+                      autoComplete="Telefonnummer"
                       autoFocus
                     />
                   </Grid>

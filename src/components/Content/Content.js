@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 
 import ProduktList from "../ProduktList/ProduktList";
@@ -10,7 +9,6 @@ export default function Content({
   warenkorb,
   total,
   handleOnClickWarenkorb,
-  updateTotalPreis,
   getPrice,
 }) {
   return (
@@ -35,12 +33,7 @@ export default function Content({
         </Card>
       </Grid>
       <Grid item xs={3}>
-        <Warenkorb
-          warenkorb={warenkorb}
-          total={total}
-          updateTotalPreis={updateTotalPreis}
-          getPrice={getPrice}
-        />
+        <Warenkorb warenkorb={warenkorb} total={total} getPrice={getPrice} />
       </Grid>
     </Grid>
   );

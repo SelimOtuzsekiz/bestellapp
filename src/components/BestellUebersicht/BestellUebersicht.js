@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import uuid from "react-uuid";
 import { useNavigate } from "react-router-dom";
@@ -63,10 +63,10 @@ export default function BestellUebersicht({
                   return (
                     <div key={uuid()}>
                       <ul key={uuid()}>
-                        <div>{artikel.produkt.Name}</div>
+                        <div key={uuid()}>{artikel.produkt.Name}</div>
                         <ul key={uuid()}>
                           {artikel.extras.map((belag) => {
-                            return <div>+ {belag}</div>;
+                            return <div key={uuid()}>+ {belag}</div>;
                           })}
                         </ul>
                       </ul>
@@ -77,20 +77,20 @@ export default function BestellUebersicht({
               <Grid item xs={6}>
                 <div>
                   <ul>
-                    <div>
+                    <div key={uuid()}>
                       <Typography variant="h6">Kontaktdaten:</Typography>
                     </div>
-                    <div>
-                      {kontakt.vorname} {kontakt.nachname}
+                    <div key={uuid()}>
+                      {kontakt.Vorname} {kontakt.Nachname}
                     </div>
-                    <div>
-                      {kontakt.strasse} {kontakt.hausnummer} {kontakt.zusatz}
+                    <div key={uuid()}>
+                      {kontakt.Strasse} {kontakt.Hausnummer} {kontakt.Zusatz}
                     </div>
-                    <div>
-                      {kontakt.plz} {kontakt.stadt}
+                    <div key={uuid()}>
+                      {kontakt.PLZ} {kontakt.Stadt}
                     </div>
-                    <div>{kontakt.firma}</div>
-                    <div>{kontakt.telefonnummer}</div>
+                    <div key={uuid()}>{kontakt.Firma}</div>
+                    <div key={uuid()}>{kontakt.Telefonnummer}</div>
                   </ul>
                 </div>
               </Grid>
